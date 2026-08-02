@@ -21,3 +21,36 @@ Urdu OCR is more difficult than English OCR mainly because of how the script is 
 
 **3. What are 2 real-world situations where Urdu OCR would be useful?**
 One real-world use of Urdu OCR is digitizing old Urdu newspapers, books, and historical or government documents so they can be preserved digitally and made searchable for research purposes. Another useful application is helping visually impaired Urdu readers, since OCR can convert printed text like signs, letters, or menus into speech using text-to-speech tools. Both of these examples show how OCR can make Urdu content more accessible and easier to preserve for the future.
+
+
+## Why We Need a Better Model
+
+**Gap Analysis — Tesseract OCR on Urdu Images**
+
+**Image 1: کلو میٹر.png**
+- Actual text: کلو میٹر
+- Tesseract output: (empty — nothing detected)
+- What went wrong: Complete failure to detect any text.
+
+**Image 2: تجارتی جہاز.png**
+- Actual text: تجارتی جہاز
+- Tesseract output: تجادخی چنہاز
+- What went wrong: Wrong characters — letters were misread and jumbled, producing a completely different (meaningless) word.
+
+**Image 3: سسٹم میں خرابی.png**
+- Actual text: سسٹم میں خرابی
+- Tesseract output: (empty — nothing detected)
+- What went wrong: Complete failure to detect any text.
+
+**Image 4: عبوری حکومت.png**
+- Actual text: عبوری حکومت
+- Tesseract output: سبوری حکیم
+- What went wrong: Wrong characters — similar-looking letters were confused (ع→س, ت→م), resulting in a different, incorrect word.
+
+**Image 5: نماز جنازہ.png**
+- Actual text: نماز جنازہ
+- Tesseract output: (empty — nothing detected)
+- What went wrong: Complete failure to detect any text.
+
+**Summary:**
+Tesseract fails on Urdu because the script is cursive and context-dependent — letters change shape depending on their position in a word (beginning, middle, end), which confuses Tesseract's character segmentation. It also struggles with the right-to-left flow and closely-spaced joined letters, often either detecting nothing at all or misreading visually similar letters (like ع and س) as one another. This shows that a generic OCR engine trained mainly on Latin-script and limited Urdu data cannot reliably read real-world Urdu text — which is exactly why we need a custom-trained model for this project.
